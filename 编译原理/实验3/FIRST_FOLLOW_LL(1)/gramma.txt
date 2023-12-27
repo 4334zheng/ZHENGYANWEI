@@ -1,0 +1,7 @@
+E->E+T|T
+B->B and U|U
+A->V=E|B
+C->if (B) L else L
+S->A|C
+L->S;L|S
+P->L

@@ -1,0 +1,8 @@
+﻿  源.cpp
+C:\Users\4334\Desktop\自用\深大\编译原理\实验2\bianyi_test2\源.cpp(40,21): warning C4018: “<”: 有符号/无符号不匹配
+C:\Users\4334\Desktop\自用\深大\编译原理\实验2\bianyi_test2\源.cpp(52,21): warning C4018: “<”: 有符号/无符号不匹配
+C:\Users\4334\Desktop\自用\深大\编译原理\实验2\bianyi_test2\源.cpp(63,22): warning C4018: “<”: 有符号/无符号不匹配
+C:\Users\4334\Desktop\自用\深大\编译原理\实验2\bianyi_test2\源.cpp(74,21): warning C4018: “<”: 有符号/无符号不匹配
+C:\Users\4334\Desktop\自用\深大\编译原理\实验2\bianyi_test2\源.cpp(79,21): warning C4018: “<”: 有符号/无符号不匹配
+C:\Users\4334\Desktop\自用\深大\编译原理\实验2\bianyi_test2\源.cpp(84,21): warning C4018: “<”: 有符号/无符号不匹配
+  bianyi_test2.vcxproj -> C:\Users\4334\Desktop\自用\深大\编译原理\实验2\bianyi_test2\Debug\bianyi_test2.exe

@@ -1,0 +1,9 @@
+﻿  源.cpp
+C:\Users\4334\Desktop\自用\深大\编译原理\实验2\bianyi_Test2_DFA\源.cpp(56,20): warning C4018: “<”: 有符号/无符号不匹配
+C:\Users\4334\Desktop\自用\深大\编译原理\实验2\bianyi_Test2_DFA\源.cpp(95,20): warning C4018: “<”: 有符号/无符号不匹配
+C:\Users\4334\Desktop\自用\深大\编译原理\实验2\bianyi_Test2_DFA\源.cpp(164,20): warning C4018: “<”: 有符号/无符号不匹配
+C:\Users\4334\Desktop\自用\深大\编译原理\实验2\bianyi_Test2_DFA\源.cpp(187,20): warning C4018: “<”: 有符号/无符号不匹配
+C:\Users\4334\Desktop\自用\深大\编译原理\实验2\bianyi_Test2_DFA\源.cpp(198,13): warning C4018: “<”: 有符号/无符号不匹配
+C:\Users\4334\Desktop\自用\深大\编译原理\实验2\bianyi_Test2_DFA\源.cpp(201,21): warning C4018: “<”: 有符号/无符号不匹配
+C:\Users\4334\Desktop\自用\深大\编译原理\实验2\bianyi_Test2_DFA\源.cpp(230,20): warning C4018: “<”: 有符号/无符号不匹配
+  bianyi_Test2_DFA.vcxproj -> C:\Users\4334\Desktop\自用\深大\编译原理\实验2\bianyi_Test2_DFA\Debug\bianyi_Test2_DFA.exe

@@ -1,0 +1,37 @@
+LL(1)文法:
+E → T E'
+E' → + T E' | ε
+T → int | float | double | long
+B → U B'
+B' → and U B' | ε
+U → true | false
+V → var
+A → V = E | B
+C → if ( B ) L else L
+S → A | C
+L → S ; L | S
+P → L
+First集合:
+E : {'int', 'double', 'float', 'long'}
+T : {'int', 'double', 'float', 'long'}
+B : {'true', 'false'}
+U : {'true', 'false'}
+V : {'var'}
+A : {'var', 'true', 'false'}
+C : {'if'}
+S : {'var', 'if'}
+L : {'var', 'if'}
+P : {'var', 'if'}
+Follow集合:
+E : {'$', '+', ';', ')', 'else'}
+E' : {'$', '+', ';', ')', 'else'}
+T : {'$', '+', ';', ')', 'else'}
+B : {'and', '$', ';', ')', 'else'}
+B' : {'and', '$', ';', ')', 'else'}
+U : {'and', '$', ';', ')', 'else'}
+V : {'=', '$', '+', ';', ')', 'else'}
+A : {'$', '+', ';', ')', 'else'}
+C : {'$', '+', ';', ')', 'else'}
+S : {'$', '+', ';', ')', 'else'}
+L : {'$', 'else'}
+P : {'$'}

@@ -1,0 +1,5 @@
+﻿  源.cpp
+C:\Users\4334\Desktop\自用\深大\编译原理\实验2\bianyi_dfaIdentify\源.cpp(66,23): warning C4018: “<”: 有符号/无符号不匹配
+C:\Users\4334\Desktop\自用\深大\编译原理\实验2\bianyi_dfaIdentify\源.cpp(70,26): warning C4018: “<”: 有符号/无符号不匹配
+C:\Users\4334\Desktop\自用\深大\编译原理\实验2\bianyi_dfaIdentify\源.cpp(84,26): warning C4018: “<”: 有符号/无符号不匹配
+  bianyi_dfaIdentify.vcxproj -> C:\Users\4334\Desktop\自用\深大\编译原理\实验2\bianyi_dfaIdentify\Debug\bianyi_dfaIdentify.exe
