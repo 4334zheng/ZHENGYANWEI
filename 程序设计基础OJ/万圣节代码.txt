@@ -1,0 +1,70 @@
+#include<stdio.h>
+#include<math.h>
+
+int judge_same(int a[6])
+{
+	int i,cnt;
+	for(i=0;i<4;i++)
+	{
+		if(a[i]==a[i+1]&&a[i+1]==a[i+2])
+		{
+			cnt=0;
+			break;
+		}
+		if(i==6) cnt=1;
+	} 
+	return cnt;
+} 
+
+int judge_b(int a[6])
+{
+	int i,cnt;
+	int x;
+	for(i=0;i<5;i++)
+	{
+		x=abs(a[i]-a[i+1]);
+		if(x>=4)
+		{
+			cnt=0;
+			break;
+		}
+		if(i==6) cnt=1;
+		return cnt;
+	}
+}
+
+int spe(int n) 
+{
+	int a[6];
+	int flag;
+	a[0]=n/100000;
+	a[1]=n%100000/10000;
+	a[2]=n%10000/1000;
+	a[3]=n%1000/100;
+	a[4]=n%100/10;
+	a[5]=n%10;
+	if(judge_same(a)&&judge_b(a)) flag=1;
+	else flag=0;
+	return flag;
+}
+
+int main()
+{
+	int t,T;
+	scanf("%d",&T);
+	for(t=1;t<=T;t++)
+	{
+		int x,y;
+		scanf("%d %d",&x,&y);
+		int k;
+		for(k=x;k<=y;k++)
+		{
+			if(spe(x))
+			{
+				printf("%.6d\n",k);
+			}
+		}
+		printf("\n");
+	}
+	return 0;
+}
