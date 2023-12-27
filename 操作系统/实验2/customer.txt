@@ -1,0 +1,86 @@
+#include<unistd.h>
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#include<sys/shm.h>
+#include<sys/wait.h>
+#include "shm_com_sem.h"
+#include<signal.h>
+
+int main()
+{
+	void *shared_memory = (void *)0;
+	struct shared_mem_st *shared_stuff;
+
+	int shmid;
+	int num_read;
+	pid_t fork_result;
+	sem_t *sem_queue, *sem_queue_empty, *sem_queue_full;
+	
+	//遮住部分：获取共享内存区，并挂入内存
+	shmid = shmget((key_t)1234, sizeof(struct shared_mem_st), 0666| IPC_CREAT);
+	if(shmid == -1){
+		fprintf(stderr, "shmget failed\n");
+		exit(EXIT_FAILURE);
+	}
+	
+	shared_memory = shmat(shmid, (void *) 0, 0);
+	
+	if(shared_memory == (void*) -1){
+		fprintf(stderr,"shmat failed\n");
+		exit(EXIT_FAILURE);
+	}
+
+	//将缓冲区指针转化为shared_mem_st类型
+	shared_stuff = (struct shared_mem_st *) shared_memory;
+
+	//获取producer创建的3个信号量，根据名字(queue_mutex、queue_empty、queue_full)识别
+	sem_queue = sem_open(queue_mutex, O_CREAT);
+	sem_queue_empty = sem_open(queue_empty, O_CREAT);
+	sem_queue_full = sem_open(queue_full, O_CREAT);
+
+	//创建了两个进程
+	fork_result = fork();
+	if(fork_result == -1){
+		fprintf(stderr, "Fork failure\n");
+	}
+	if(fork_result == 0){ //child
+		while(1){
+			//遮住部分：信号量操作，打印消费内容及进程号
+			sem_wait(sem_queue_full);
+			sem_wait(sem_queue);
+			
+			printf("ChildProcess--%d read from producer:%s\n", getpid(), shared_stuff->buffer[shared_stuff->line_read]);
+			//发现quit退出
+			if(strcmp(shared_stuff->buffer[shared_stuff->line_read],"quit\n") == 0)
+				break;
+				
+			shared_stuff->line_read =(shared_stuff->line_read+1) % NUM_LINE;
+			sem_post(sem_queue);
+			sem_post(sem_queue_empty);
+		}
+		//遮住部分：释放信号量
+		sem_unlink(queue_mutex);
+		sem_unlink(queue_empty);
+		sem_unlink(queue_full);
+	}else{ //parent，与子进程相似
+		while(1){
+			sem_wait(sem_queue_full);
+			sem_wait(sem_queue);
+			
+			printf("ParentProcess--%d read from producer:%s\n", getpid(), shared_stuff->buffer[shared_stuff->line_read]);
+			if(strcmp(shared_stuff->buffer[shared_stuff->line_read],"quit\n") == 0){
+				break;
+			}
+				
+			shared_stuff->line_read =(shared_stuff->line_read+1) % NUM_LINE;
+			sem_post(sem_queue);
+			sem_post(sem_queue_empty);
+		}
+		sem_unlink(queue_mutex);
+		sem_unlink(queue_empty);
+		sem_unlink(queue_full);
+	}
+	kill(0, SIGKILL);
+	exit(EXIT_SUCCESS);
+}
